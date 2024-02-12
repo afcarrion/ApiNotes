@@ -1,12 +1,10 @@
 package com.application.api.controller
 
-import TodoService
 import com.application.api.data.Todo
+import com.application.api.service.TodoService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.*
-import java.util.*
-import javax.print.attribute.standard.Media
 
 @RestController
 @RequestMapping("/todos")
