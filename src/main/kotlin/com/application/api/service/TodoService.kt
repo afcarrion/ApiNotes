@@ -12,6 +12,20 @@ class TodoService{
             "this is a message from my first todo",
             System.currentTimeMillis().toString()
         ),
-
+        Todo(
+            UUID.randomUUID().toString(),
+            "My second Todo",
+            "this is a message from my second todo",
+            System.currentTimeMillis().toString()
+        )
     )
+
+    fun insertTodo(todo: Todo): Todo{
+        todo.id = UUID.randomUUID().toString()
+        return todo
+    }
+
+    fun deleteTodo(id: String): Boolean = false
+
+    fun updateTodo(todo: Todo): Boolean = true
 }
