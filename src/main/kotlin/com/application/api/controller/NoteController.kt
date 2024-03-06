@@ -41,7 +41,7 @@ class NoteController {
         value = ["/{id}"],
         produces = arrayOf(MediaType.APPLICATION_JSON_VALUE)
     )
-    fun deleteNote(@PathVariable(name = "id") id: String): Boolean = service.deleteNote(id)
+    fun deleteNote(@PathVariable(name = "id") id: String) = service.deleteNote(id)
 
     /**
      * Update item.
@@ -52,5 +52,5 @@ class NoteController {
         produces = arrayOf(MediaType.APPLICATION_JSON_VALUE),
         consumes = arrayOf(MediaType.APPLICATION_JSON_VALUE)
     )
-    fun updateNote(@RequestBody note: Note): Boolean = service.updateNote(note)
+    fun updateNote(@RequestBody note: Note) = service.updateNote(note)
 }
