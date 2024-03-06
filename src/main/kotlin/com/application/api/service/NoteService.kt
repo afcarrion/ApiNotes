@@ -1,11 +1,17 @@
 package com.application.api.service
 
 import com.application.api.data.Note
+import com.application.api.repository.NoteRepository
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import java.util.*
 
 @Service("Note Service")
 class NoteService{
+
+    @Autowired
+    lateinit var repository: NoteRepository
+
     fun getNotes(): List<Note> = listOf(
         Note(
             UUID.randomUUID().toString(),
