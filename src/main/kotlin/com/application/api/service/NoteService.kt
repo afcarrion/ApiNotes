@@ -12,25 +12,11 @@ class NoteService{
     @Autowired
     lateinit var repository: NoteRepository
 
-    fun getNotes(): List<Note> = listOf(
-        Note(
-            UUID.randomUUID().toString(),
-            "My first Note",
-            "this is a Messsage of the 1st note"
-        ),
-        Note(
-            UUID.randomUUID().toString(),
-            "My second Note",
-            "This is a message for the second note"
-        )
-    )
+    fun getNotes(): Iterable<Note> = repository.findAll()
 
-    fun insertNote(note: Note): Note{
-        note.id = UUID.randomUUID().toString()
-        return note
-    }
+    fun insertNote(note: Note): Note = repository.save(note)
 
-    fun deleteNote(id: String): Boolean = false
+    fun deleteNote(id: String) = repository.deleteById(id)
 
-    fun updateNote(note: Note): Boolean = true
+    fun updateNote(note: Note): Note = repository.save(note)
 }
