@@ -1,6 +1,7 @@
 package com.application.api.controller
 
 import com.application.api.data.Note
+import com.application.api.data.NoteDTO
 import com.application.api.service.NoteService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration
@@ -26,12 +27,10 @@ class NoteController {
      * It consmes  JSON, that is: request body Note
      */
     @PostMapping(
-        produces = arrayOf(MediaType.APPLICATION_JSON_VALUE),
-        consumes = arrayOf(MediaType.APPLICATION_JSON_VALUE)
+        produces = [MediaType.APPLICATION_JSON_VALUE],
+        consumes = [MediaType.APPLICATION_JSON_VALUE]
     )
-    fun insertNote(
-        @RequestBody note: Note
-    ) = service.insertNote(note)
+    fun insertNote(@RequestBody noteDTO: NoteDTO) = service.insertNote(noteDTO)
 
     /**
      * Delete Note.
@@ -49,8 +48,8 @@ class NoteController {
      * As result it returns update Note.
      */
     @PutMapping(
-        produces = arrayOf(MediaType.APPLICATION_JSON_VALUE),
-        consumes = arrayOf(MediaType.APPLICATION_JSON_VALUE)
+        produces = [MediaType.APPLICATION_JSON_VALUE],
+        consumes = [MediaType.APPLICATION_JSON_VALUE]
     )
-    fun updateNote(@RequestBody note: Note) = service.updateNote(note)
+    fun updateNote(@RequestBody noteDTO: NoteDTO) = service.updateNote(noteDTO)
 }

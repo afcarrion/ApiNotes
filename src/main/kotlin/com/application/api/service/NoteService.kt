@@ -1,6 +1,7 @@
 package com.application.api.service
 
 import com.application.api.data.Note
+import com.application.api.data.NoteDTO
 import com.application.api.repository.NoteRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
@@ -12,11 +13,29 @@ class NoteService{
     @Autowired
     lateinit var repository: NoteRepository
 
-    fun getNotes(): Iterable<Note> = repository.findAll()
+    fun getNotes(): Iterable<NoteDTO> = repository.findAll().map{
+        it -> NoteDTO(it)
+    }
 
-    fun insertNote(note: Note): Note = repository.save(note)
+    fun insertNote(note: NoteDTO) = NoteDTO(
+        repository.save(
+            Note(
+                title = note.title,
+                message = note.message,
+                location = note.location
+            )
+        )
+    )
 
     fun deleteNote(id: String) = repository.deleteById(id)
 
-    fun updateNote(note: Note): Note = repository.save(note)
+    fun updateNote(noteDto: NoteDTO): NoteDTO {
+        var note = repository.findById(noteDto.id).get()
+        note.title = noteDto.title
+        note.message = noteDto.message
+        note.location = noteDto.location
+        note.modified = Date()
+        note = repository.save(note)
+        return NoteDTO(note)
+    }
 }
