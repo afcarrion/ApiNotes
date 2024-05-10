@@ -55,4 +55,5 @@ class TodoController {
         produces = [MediaType.APPLICATION_JSON_VALUE]
     )
     fun getTodosLaterThan(@RequestBody payload: TodoLaterThanRequest): Iterable<TodoDTO> = service.getScheduledLaterThan(payload.date)
+
 }
