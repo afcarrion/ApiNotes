@@ -1,6 +1,7 @@
 package com.application.api.service
 
 import com.application.api.repository.UserRepository
+import com.application.api.security.Admin
 import com.application.api.security.Member
 import com.application.api.security.User
 import com.application.api.security.UserDTO
@@ -28,9 +29,19 @@ class UserService : UserDetailsService {
         member.lasName = user.lastName
         member.pwd = user.password
         member.roles = "MEMBER"
+
         return repository.save(member)
     }
 
+    fun saveAdmin(user: UserDTO): User {
+        val admin = Admin()
+        admin.email = user.email
+        admin.firstName = user.firstName
+        admin.lasName = user.lastName
+        admin.roles = "ADMIN, MEMBER"
+        admin.pwd = user.password
 
+        return repository.save(admin)
+    }
 
 }
