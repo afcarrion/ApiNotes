@@ -37,7 +37,7 @@ open class User(
     var firstName: String = "",
 
     @NotBlank
-    var lasName: String = "",
+    var lastName: String = "",
 
     var roles: String = "",
     var enabled: Boolean = true,
